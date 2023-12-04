@@ -1,0 +1,35 @@
+{
+  "name": "restaurantefacturas",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --exec babel-node back-end/server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChristianMA19/RestauranteFacturas.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ChristianMA19/RestauranteFacturas/issues"
+  },
+  "homepage": "https://github.com/ChristianMA19/RestauranteFacturas#readme",
+  "dependencies": {
+    "@babel/core": "^7.23.5",
+    "@babel/node": "^7.22.19",
+    "argon2": "^0.31.2",
+    "babel": "^6.23.0",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.3.0",
+    "mongoose": "^8.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

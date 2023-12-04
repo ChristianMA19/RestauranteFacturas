@@ -1,0 +1,7 @@
+{
+  "env": {
+    "MONGO_USER": "cdmanga",
+    "MONGO_PASS": "Christian123",
+    "SECRET_KEY": "laclaveesmuysecreta"
+  }
+}
