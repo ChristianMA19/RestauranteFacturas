@@ -25,13 +25,13 @@ export async function createUser(req, res) {
 
 export async function login(req, res) {
   try {
-    const { email, pass } = req.params;
+    const { email, pass } = req.query;
     const usuario = await Users.findOne({ email: email, isDisable: false });
 
     if (usuario && (await argon2.verify(usuario.password, pass))) {
       const token = jwt.sign(
       { IdUsuario: usuario._id, mode: usuario.mode },llave,{ expiresIn: '2h' });
-      res.status(200).json(token);     
+      res.status(200).json({token,redirectTo: 'segundo.html'});     
       
     }else{  
       if(usuario){

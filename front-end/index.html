@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LogIn Restaurante</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <div class="form">
+      <h1>LogIn</h1>
+      <form id="loginForm">
+        <input type="text" name="email" placeholder="email" required>
+        <input type="password" name="pass" placeholder="Password" required>
+        <input type="submit" value="LogIn" class="login">
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const loginForm = document.getElementById('loginForm');
+
+      loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const email = loginForm.elements.email.value;
+        const pass = loginForm.elements.pass.value;
+
+        try {
+          const response = await fetch(`http://localhost:8080/users?email=${encodeURIComponent(email)}&pass=${encodeURIComponent(pass)}`);
+          const responseData = await response.json();
+
+          if (response.ok) {
+            // Si la respuesta es exitosa, redirigir a la nueva página
+            if (responseData.redirectTo) {
+              const expirationDate = new Date();
+              expirationDate.setTime(expirationDate.getTime() + (2 * 60 * 60 * 1000)); // Expira en 2 horas
+              document.cookie = `token=${responseData.token}; expires=${expirationDate.toUTCString()}; path=/`;
+
+              window.location.href = responseData.redirectTo;
+            }
+          } else {
+            // Manejar errores o mostrar mensajes al usuario
+            window.alert(responseData);
+          }
+        } catch (error) {
+          console.error('Error al realizar la solicitud:', error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -3,7 +3,7 @@ import { Router } from "express";
 const router = Router();
 
 // Endpoint GET
-router.get("/:email/:pass", login);
+router.get("/", login);
 
 // Endpoint POST
 router.post("/", createUser);
